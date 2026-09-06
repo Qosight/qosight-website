@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qosight — Discord Community Building &amp; Management</title>
+<meta name="description" content="Qosight builds, manages, restructures and improves Discord communities with thoughtful architecture, automation, moderation systems, branding and member experiences.">
+
+<!-- Open Graph placeholders — replace 'yourdomain.com' and the image path once the site is live -->
+<meta property="og:title" content="Qosight — Discord Community Building & Management">
+<meta property="og:description" content="Qosight builds, manages, restructures and improves Discord communities.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourdomain.com">
+<meta property="og:image" content="assets/images/og-image.png">
+
+<!-- Favicon placeholder — put a real favicon.ico or favicon.png inside /assets/icons/ and update this line -->
+<link rel="icon" href="assets/icons/favicon.png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ============ HEADER / NAV ============ -->
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a href="#home" class="logo">Qosight</a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+    </nav>
+
+    <a href="#start" class="btn btn-primary nav-cta">Start a Project</a>
+
+    <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav">
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Our Work</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#start" class="btn btn-primary">Start a Project</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HOME / HERO ============ -->
+  <section class="hero" id="home">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1>Build a Discord Community People Want to Be Part Of.</h1>
+        <p class="hero-sub">Qosight builds, manages, and improves Discord communities through thoughtful structure, powerful systems, and a better member experience.</p>
+        <div class="hero-actions">
+          <a href="#start" class="btn btn-primary">Start a Project</a>
+          <a href="#work" class="btn btn-secondary">View Our Work</a>
+        </div>
+        <p class="hero-trust">New community or already established, we help you build a Discord experience that works.</p>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <!-- Abstract representation of a community system: hub, roles, channels, automation nodes -->
+        <svg id="hero-graph" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+          <g class="graph-links">
+            <line x1="240" y1="240" x2="240" y2="90"></line>
+            <line x1="240" y1="240" x2="380" y2="150"></line>
+            <line x1="240" y1="240" x2="410" y2="290"></line>
+            <line x1="240" y1="240" x2="330" y2="400"></line>
+            <line x1="240" y1="240" x2="150" y2="400"></line>
+            <line x1="240" y1="240" x2="70" y2="290"></line>
+            <line x1="240" y1="240" x2="100" y2="150"></line>
+            <line x1="380" y1="150" x2="410" y2="290"></line>
+            <line x1="150" y1="400" x2="70" y2="290"></line>
+            <line x1="100" y1="150" x2="240" y2="90"></line>
+          </g>
+          <g class="graph-nodes">
+            <circle class="node node-hub" cx="240" cy="240" r="22"></circle>
+            <circle class="node" cx="240" cy="90" r="10"></circle>
+            <circle class="node" cx="380" cy="150" r="8"></circle>
+            <circle class="node" cx="410" cy="290" r="12"></circle>
+            <circle class="node" cx="330" cy="400" r="9"></circle>
+            <circle class="node" cx="150" cy="400" r="11"></circle>
+            <circle class="node" cx="70" cy="290" r="8"></circle>
+            <circle class="node" cx="100" cy="150" r="10"></circle>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Discord Communities, Built With Purpose.</h2>
+        <p>Whether you're starting from scratch or working with an existing community, Qosight helps you create a Discord experience that is organized, functional and built around the people who use it.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card service-card-lg">
+          <div class="service-icon" data-icon="build"></div>
+          <h3>Discord Community Building</h3>
+          <p>Complete Discord communities built from the ground up, including server architecture, structure, categories, channels, roles, permissions, rules, FAQ, welcome, verify, introduction, onboarding and the overall member experience.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon" data-icon="restructure"></div>
+          <h3>Community Improvement &amp; Restructuring</h3>
+          <p>We review and improve existing Discord communities by fixing disorganized structures, refining roles and permissions, improving member flow, and identifying areas that need attention.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon" data-icon="automation"></div>
+          <h3>Automation &amp; Community Systems</h3>
+          <p>Build practical systems for welcome flows, verification, role automation, moderation workflows, notifications, FAQs and other recurring community tasks.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon" data-icon="security"></div>
+          <h3>Security &amp; Moderation</h3>
+          <p>Create a stronger foundation for your community with thoughtful permissions, verification, moderation structure, staff organization and anti-bot measures.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon" data-icon="branding"></div>
+          <h3>Branding &amp; Visual Design</h3>
+          <p>Give your Discord community a consistent identity through custom banners, visual elements, server presentation and branded community experiences.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon" data-icon="management"></div>
+          <h3>Community Management &amp; Optimization</h3>
+          <p>Keep your community organized and continuously improve its systems, structure and member experience as the community evolves.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OUR WORK ============ -->
+  <section class="work" id="work">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our Work</h2>
+        <p>Real communities. Thoughtful systems. Built around the people inside them.</p>
+      </div>
+
+      <!--
+        PORTFOLIO PLACEHOLDERS
+        To add a real project: duplicate one .work-card block, replace the text,
+        and swap the .work-image placeholder div for an <img> tag pointing to
+        a file inside assets/images/work/
+      -->
+      <div class="work-grid">
+
+        <article class="work-card">
+          <div class="work-image" role="img" aria-label="Project image placeholder">
+            <span>Image placeholder</span>
+          </div>
+          <div class="work-body">
+            <span class="work-type">Creator / Streaming Community</span>
+            <h3>KINGTIZZLE78TTV Community</h3>
+            <p>A creator-focused Discord community built around clear structure and a smooth new-member experience.</p>
+            <ul class="work-tags">
+              <li>Discord Community Structure</li>
+              <li>Roles &amp; Permissions</li>
+              <li>Rules &amp; Welcome Systems</li>
+              <li>Verification</li>
+              <li>FAQ</li>
+              <li>Onboarding</li>
+              <li>Branding</li>
+            </ul>
+            <a href="#" class="work-link" data-case-study>View Case Study</a>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-image" role="img" aria-label="Project image placeholder">
+            <span>Image placeholder</span>
+          </div>
+          <div class="work-body">
+            <span class="work-type">Project type placeholder</span>
+            <h3>Project Name Placeholder</h3>
+            <p>Short project description placeholder — replace with a real summary of the work once available.</p>
+            <ul class="work-tags">
+              <li>Service placeholder</li>
+              <li>Service placeholder</li>
+              <li>Service placeholder</li>
+            </ul>
+            <a href="#" class="work-link" data-case-study>View Case Study</a>
+          </div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-image" role="img" aria-label="Project image placeholder">
+            <span>Image placeholder</span>
+          </div>
+          <div class="work-body">
+            <span class="work-type">Project type placeholder</span>
+            <h3>Project Name Placeholder</h3>
+            <p>Short project description placeholder — replace with a real summary of the work once available.</p>
+            <ul class="work-tags">
+              <li>Service placeholder</li>
+              <li>Service placeholder</li>
+              <li>Service placeholder</li>
+            </ul>
+            <a href="#" class="work-link" data-case-study>View Case Study</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OUR PROCESS ============ -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>Our Process</h2>
+        <p>A structured path from first conversation to a community that keeps improving.</p>
+      </div>
+
+      <ol class="process-list">
+        <li class="process-step">
+          <span class="step-number">01</span>
+          <div>
+            <h3>Discover</h3>
+            <p>Understand the community, audience, goals and current problems.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <span class="step-number">02</span>
+          <div>
+            <h3>Plan</h3>
+            <p>Design the server architecture, member journey and required systems.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <span class="step-number">03</span>
+          <div>
+            <h3>Build</h3>
+            <p>Implement channels, categories, roles, permissions, automation and branding.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <span class="step-number">04</span>
+          <div>
+            <h3>Refine</h3>
+            <p>Test the community experience and fix issues before launch.</p>
+          </div>
+        </li>
+        <li class="process-step">
+          <span class="step-number">05</span>
+          <div>
+            <h3>Launch &amp; Improve</h3>
+            <p>Launch the community and continue improving it based on its needs.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="team" id="team">
+    <div class="container">
+      <div class="section-head">
+        <h2>Meet the Qosight Team</h2>
+        <p>Qosight is a team of people working together to build better online communities.</p>
+      </div>
+
+      <!--
+        TEAM PLACEHOLDERS
+        Replace the initials in .avatar-placeholder, the name, and the role text
+        for each member. To use a real photo, swap the div for an <img> pointing
+        to assets/images/team/
+      -->
+      <div class="team-grid">
+        <article class="team-card">
+          <div class="avatar-placeholder">Q</div>
+          <h3>Founder Name Placeholder</h3>
+          <p class="team-role">Founder / Lead Community Architect — Qosight</p>
+        </article>
+        <article class="team-card">
+          <div class="avatar-placeholder">2</div>
+          <h3>Team Member 2</h3>
+          <p class="team-role">Role placeholder</p>
+        </article>
+        <article class="team-card">
+          <div class="avatar-placeholder">3</div>
+          <h3>Team Member 3</h3>
+          <p class="team-role">Role placeholder</p>
+        </article>
+        <article class="team-card">
+          <div class="avatar-placeholder">4</div>
+          <h3>Team Member 4</h3>
+          <p class="team-role">Role placeholder</p>
+        </article>
+        <article class="team-card">
+          <div class="avatar-placeholder">5</div>
+          <h3>Team Member 5</h3>
+          <p class="team-role">Role placeholder</p>
+        </article>
+        <article class="team-card">
+          <div class="avatar-placeholder">6</div>
+          <h3>Team Member 6</h3>
+          <p class="team-role">Role placeholder</p>
+        </article>
+        <article class="team-card">
+          <div class="avatar-placeholder">7</div>
+          <h3>Team Member 7</h3>
+          <p class="team-role">Role placeholder</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLIENT REVIEWS ============ -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="section-head">
+        <h2>What Our Clients Say</h2>
+      </div>
+
+      <div class="reviews-empty">
+        <p>Verified client experiences will appear here once they've been submitted and reviewed.</p>
+        <button class="btn btn-secondary" id="open-review-modal" type="button">Leave a Review</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ START A PROJECT ============ -->
+  <section class="start-project" id="start">
+    <div class="container start-inner">
+      <div class="section-head">
+        <h2>Let's Build Something Better.</h2>
+        <p>Tell us what you're building, what isn't working, or what you'd like to improve. We'll take it from there.</p>
+      </div>
+
+      <div class="start-grid">
+        <form class="project-form" id="project-form" novalidate>
+
+          <div class="form-row">
+            <label for="pf-name">Name</label>
+            <input type="text" id="pf-name" name="name" required autocomplete="name">
+            <span class="field-error" id="pf-name-error"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="pf-discord">Discord Username</label>
+            <input type="text" id="pf-discord" name="discord" required>
+            <span class="field-error" id="pf-discord-error"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="pf-email">Email</label>
+            <input type="email" id="pf-email" name="email" required autocomplete="email">
+            <span class="field-error" id="pf-email-error"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="pf-community-name">Community Name</label>
+            <input type="text" id="pf-community-name" name="communityName" required>
+            <span class="field-error" id="pf-community-name-error"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="pf-community-type">Community Type</label>
+            <input type="text" id="pf-community-type" name="communityType" placeholder="e.g. Gaming, Creator, Business, Education" required>
+            <span class="field-error" id="pf-community-type-error"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="pf-project-type">Project Type</label>
+            <select id="pf-project-type" name="projectType" required>
+              <option value="" disabled selected>Select an option</option>
+              <option>New Discord Community</option>
+              <option>Existing Community Improvement</option>
+              <option>Community Management</option>
+              <option>Automation &amp; Systems</option>
+              <option>Security &amp; Moderation</option>
+              <option>Branding &amp; Design</option>
+              <option>Other</option>
+            </select>
+            <span class="field-error" id="pf-project-type-error"></span>
+          </div>
+
+          <div class="form-row">
+            <label for="pf-server-link">Current Discord or Server Link <span class="optional">(optional)</span></label>
+            <input type="text" id="pf-server-link" name="serverLink">
+          </div>
+
+          <div class="form-row">
+            <label for="pf-help">What do you need help with?</label>
+            <input type="text" id="pf-help" name="helpSummary" required>
+            <span class="field-error" id="pf-help-error"></span>
+          </div>
+
+          <div class="form-row form-row-full">
+            <label for="pf-description">Project Description</label>
+            <textarea id="pf-description" name="description" rows="5" required></textarea>
+            <span class="field-error" id="pf-description-error"></span>
+          </div>
+
+          <div class="form-row form-row-full">
+            <button type="submit" class="btn btn-primary">Send Project Request</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </div>
+
+        </form>
+
+        <div class="contact-alt">
+          <h3>Other ways to reach us</h3>
+          <ul>
+            <li>
+              <span class="contact-label">Discord</span>
+              <a href="#" data-placeholder-link>qosight</a>
+            </li>
+            <li>
+              <span class="contact-label">Email</span>
+              <a href="mailto:qosight001@email.com">qosight001@email.com</a>
+            </li>
+            <li>
+              <span class="contact-label">TikTok</span>
+              <a href="#" data-placeholder-link>@qosight</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo">Qosight</span>
+      <p>Discord Community Building &amp; Management.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Our Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#start">Start a Project</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Community Building</a></li>
+        <li><a href="#services">Restructuring &amp; Improvement</a></li>
+        <li><a href="#services">Automation &amp; Systems</a></li>
+        <li><a href="#services">Security &amp; Moderation</a></li>
+        <li><a href="#services">Branding &amp; Design</a></li>
+        <li><a href="#services">Community Management</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li>Discord: <a href="#" data-placeholder-link>qosight</a></li>
+        <li>Email: <a href="mailto:qosight001@email.com">qosight001@email.com</a></li>
+        <li>TikTok: <a href="#" data-placeholder-link>@qosight</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© 2026 Qosight. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ============ REVIEW MODAL (front-end only) ============ -->
+<div class="modal-overlay" id="review-modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="review-modal-title">
+    <button class="modal-close" id="close-review-modal" type="button" aria-label="Close">&times;</button>
+    <h3 id="review-modal-title">Leave a Review</h3>
+    <p class="modal-note">Submitted reviews are stored for approval and won't appear publicly until Qosight verifies them.</p>
+
+    <form id="review-form" novalidate>
+      <div class="form-row">
+        <label for="rv-name">Name</label>
+        <input type="text" id="rv-name" name="name" required>
+      </div>
+
+      <div class="form-row">
+        <label for="rv-discord">Discord Username <span class="optional">(optional)</span></label>
+        <input type="text" id="rv-discord" name="discord">
+      </div>
+
+      <div class="form-row">
+        <label for="rv-service">Service Received</label>
+        <input type="text" id="rv-service" name="service" required>
+      </div>
+
+      <div class="form-row">
+        <label for="rv-project">Project Name <span class="optional">(optional)</span></label>
+        <input type="text" id="rv-project" name="project">
+      </div>
+
+      <div class="form-row">
+        <span id="rv-rating-label">Rating</span>
+        <div class="star-rating" role="radiogroup" aria-labelledby="rv-rating-label">
+          <button type="button" class="star" data-value="1" role="radio" aria-checked="false" aria-label="1 star">★</button>
+          <button type="button" class="star" data-value="2" role="radio" aria-checked="false" aria-label="2 stars">★</button>
+          <button type="button" class="star" data-value="3" role="radio" aria-checked="false" aria-label="3 stars">★</button>
+          <button type="button" class="star" data-value="4" role="radio" aria-checked="false" aria-label="4 stars">★</button>
+          <button type="button" class="star" data-value="5" role="radio" aria-checked="false" aria-label="5 stars">★</button>
+        </div>
+        <input type="hidden" id="rv-rating-value" name="rating">
+      </div>
+
+      <div class="form-row">
+        <label for="rv-text">Review</label>
+        <textarea id="rv-text" name="review" rows="4" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit Review</button>
+      <p class="form-status" id="review-form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
