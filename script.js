@@ -237,3 +237,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setTimeout(closeModal, 1800);
   });
+   
+});
