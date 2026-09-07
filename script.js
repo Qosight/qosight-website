@@ -179,15 +179,17 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
 
     var name = document.getElementById('rv-name').value.trim();
+    var twitchUsername = document.getElementById('rv-twitch').value.trim();
     var service = document.getElementById('rv-service').value;
     var text = document.getElementById('rv-text').value.trim();
     var rating = ratingInput.value;
     var permission = document.getElementById('rv-permission').checked;
+    var imageFile = document.getElementById('rv-image').files[0];
 
-    if (!name || !text || !rating) {
+    if (!name || !twitchUsername || !text || !rating) {
       reviewStatus.style.color = '#E08585';
       reviewStatus.textContent =
-        'Please fill in your name, rating and review.';
+        'Please fill in your name, Twitch username, rating and review.';
       return;
     }
 
@@ -201,11 +203,46 @@ document.addEventListener('DOMContentLoaded', function () {
     reviewStatus.style.color = 'var(--accent)';
     reviewStatus.textContent = 'Submitting your review...';
 
+    var imageUrl = '';
+
+    /* ---------- Upload profile image ---------- */
+    if (imageFile) {
+      var fileExtension = imageFile.name.split('.').pop();
+      var fileName =
+        Date.now() + '-' +
+        Math.random().toString(36).substring(2) +
+        '.' + fileExtension;
+
+      var uploadResult = await supabaseClient
+        .storage
+        .from('review-images')
+        .upload(fileName, imageFile);
+
+      if (uploadResult.error) {
+        console.error('Image upload error:', uploadResult.error);
+
+        reviewStatus.style.color = '#E08585';
+        reviewStatus.textContent =
+          'We could not upload your profile image. Please try again.';
+        return;
+      }
+
+      var publicImage = supabaseClient
+        .storage
+        .from('review-images')
+        .getPublicUrl(fileName);
+
+      imageUrl = publicImage.data.publicUrl;
+    }
+
+    /* ---------- Save review ---------- */
     var result = await supabaseClient
       .from('reviews')
       .insert([
         {
           name: name,
+          twitch_username: twitchUsername,
+          image_url: imageUrl,
           service: service,
           rating: Number(rating),
           review: text,
@@ -237,5 +274,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setTimeout(closeModal, 1800);
   });
-   
+
 });
