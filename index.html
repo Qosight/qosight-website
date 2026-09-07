@@ -545,7 +545,21 @@
             <input type="text" id="pf-name" name="name" required autocomplete="name">
             <span class="field-error" id="pf-name-error"></span>
           </div>
+          
+          <div class="form-row">
+  <label for="rv-twitch">Twitch Username</label>
+  <div style="display:flex;align-items:center;gap:0.35rem;">
+    <span>twitch.tv/</span>
+    <input type="text" id="rv-twitch" name="twitch_username" placeholder="YourUsername" required>
+  </div>
+</div>
 
+<div class="form-row">
+  <label for="rv-image">Profile Image</label>
+  <input type="file" id="rv-image" name="image" accept="image/png,image/jpeg,image/webp">
+  <small>Upload a profile image to appear with your review.</small>
+</div>
+          
           <div class="form-row">
             <label for="pf-discord">Discord Username</label>
             <input type="text" id="pf-discord" name="discord" required>
