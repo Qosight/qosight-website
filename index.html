@@ -789,101 +789,73 @@
     rules: {
       title: "Rules & Community Organization",
       description: "Clear and structured rules systems designed to help communities establish expectations, improve organization and create a more understandable member experience.",
-      files: [
-        "1p7djCUgbhmjMCnEJ2fkoVYR95kbbGztB",
-        "1r6KUCnwiAgTtrekIkqkVHlvKb8lINiIY",
-        "1IcnQ2ucTW5oOKLi4iJkXjwAF594iAB1i",
-        "1cwtzJ6PDUXZFv6XglgVSTX4p5Ag5A2B3",
-        "18rpn40foGv6HRQBlMNHQnvCoXlY2HwVN",
-        "15UCDMTTG1MemcFnwXr0_I_9pUsfuEEUy",
-        "1egCrkq9zJFIQi1iZwyr2J15d7XhWor2_"
-      ]
-    }
-  };
+<form id="review-form" novalidate>
 
-  var modal = document.getElementById('portfolio-modal');
-  var titleEl = document.getElementById('portfolio-modal-title');
-  var descEl = document.getElementById('portfolio-modal-description');
-  var listEl = document.getElementById('portfolio-modal-list');
-  var player = document.getElementById('portfolio-modal-player');
-  var iframe = document.getElementById('portfolio-modal-iframe');
-  var closeBtn = document.getElementById('close-portfolio-modal');
-  var lastTrigger = null;
+  <div class="form-row">
+    <label for="rv-image">Profile Image</label>
+    <input type="file" id="rv-image" name="image" accept="image/*">
+    <small class="form-help">Upload a profile image for your review.</small>
+  </div>
 
-  function buildList(files, categoryTitle) {
-    listEl.innerHTML = '';
-    files.forEach(function (fileId, index) {
-      var li = document.createElement('li');
-      li.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:0.75rem;border-bottom:1px solid var(--border);padding-bottom:0.6rem;';
+  <div class="form-row">
+    <label for="rv-name">Name</label>
+    <input type="text" id="rv-name" name="name" required>
+  </div>
 
-      var label = document.createElement('span');
-      label.textContent = 'Example ' + (index + 1);
+  <div class="form-row">
+    <label for="rv-twitch">Twitch Username</label>
+    <div class="input-with-prefix">
+      <span>twitch.tv/</span>
+      <input type="text" id="rv-twitch" name="twitch_username" placeholder="YourUsername" required>
+    </div>
+  </div>
 
-      var actions = document.createElement('span');
-      actions.style.cssText = 'display:flex;gap:0.5rem;';
+  <div class="form-row">
+    <label for="rv-service">
+      Service / Project Type
+      <span class="optional">(optional)</span>
+    </label>
 
-      var playBtn = document.createElement('button');
-      playBtn.type = 'button';
-      playBtn.className = 'btn btn-secondary';
-      playBtn.textContent = 'Play';
-      playBtn.setAttribute('aria-label', 'Play example ' + (index + 1) + ' of ' + categoryTitle + ' work');
-      playBtn.addEventListener('click', function () {
-        iframe.src = 'https://drive.google.com/file/d/' + fileId + '/preview';
-        player.style.display = 'block';
-      });
+    <select id="rv-service" name="service">
+      <option value="" selected>Select an option</option>
+      <option>Discord Community Building</option>
+      <option>Community Improvement &amp; Restructuring</option>
+      <option>Automation &amp; Community Systems</option>
+      <option>Security &amp; Moderation</option>
+      <option>Branding &amp; Visual Design</option>
+      <option>Community Management &amp; Optimization</option>
+      <option>Other</option>
+    </select>
+  </div>
 
-      var link = document.createElement('a');
-      link.className = 'work-link';
-      link.href = 'https://drive.google.com/file/d/' + fileId + '/view';
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = 'Open in Drive';
-      link.setAttribute('aria-label', 'Open example ' + (index + 1) + ' of ' + categoryTitle + ' work in Google Drive, opens in a new tab');
+  <div class="form-row">
+    <span id="rv-rating-label">Rating</span>
 
-      actions.appendChild(playBtn);
-      actions.appendChild(link);
-      li.appendChild(label);
-      li.appendChild(actions);
-      listEl.appendChild(li);
-    });
-  }
+    <div class="star-rating" role="radiogroup" aria-labelledby="rv-rating-label">
+      <button type="button" class="star" data-value="1" role="radio" aria-checked="false" aria-label="1 star">★</button>
+      <button type="button" class="star" data-value="2" role="radio" aria-checked="false" aria-label="2 stars">★</button>
+      <button type="button" class="star" data-value="3" role="radio" aria-checked="false" aria-label="3 stars">★</button>
+      <button type="button" class="star" data-value="4" role="radio" aria-checked="false" aria-label="4 stars">★</button>
+      <button type="button" class="star" data-value="5" role="radio" aria-checked="false" aria-label="5 stars">★</button>
+    </div>
 
-  function openPortfolio(key, trigger) {
-    var data = portfolioData[key];
-    if (!data) return;
-    lastTrigger = trigger;
-    titleEl.textContent = data.title;
-    descEl.textContent = data.description;
-    iframe.src = '';
-    player.style.display = 'none';
-    buildList(data.files, data.title);
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
-    closeBtn.focus();
-  }
+    <input type="hidden" id="rv-rating-value" name="rating">
+  </div>
 
-  function closePortfolio() {
-    modal.hidden = true;
-    document.body.style.overflow = '';
-    iframe.src = '';
-    player.style.display = 'none';
-    if (lastTrigger) lastTrigger.focus();
-  }
+  <div class="form-row">
+    <label for="rv-text">Review</label>
+    <textarea id="rv-text" name="review" rows="4" required></textarea>
+  </div>
 
-  document.querySelectorAll('.work-view-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      openPortfolio(btn.getAttribute('data-portfolio'), btn);
-    });
-  });
+  <div class="form-row form-row-checkbox">
+    <label class="checkbox-label" for="rv-permission">
+      <input type="checkbox" id="rv-permission" name="permission">
+      I give Qosight permission to display my review on this website.
+    </label>
+  </div>
 
-  closeBtn.addEventListener('click', closePortfolio);
-  modal.addEventListener('click', function (e) {
-    if (e.target === modal) closePortfolio();
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.hidden) closePortfolio();
-  });
-})();
-</script>
-</body>
-</html>
+  <button type="submit" class="btn btn-primary">Submit Review</button>
+
+  <p class="form-status" id="review-form-status" role="status" aria-live="polite"></p>
+
+</form>
