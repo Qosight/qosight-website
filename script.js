@@ -120,6 +120,14 @@ document.addEventListener('DOMContentLoaded', function () {
     input.addEventListener('change', function () { validateField(field); });
   });
 
+  /* ---------- Supabase ---------- */
+  var supabaseUrl = 'https://zvupnyqqdbgtyifyarwj.supabase.co';
+  var supabasePublishableKey = 'sb_publishable_hO4CNNnCgvK3fopPFvZfgQ_JXqaLsGV';
+  var supabaseClient = window.supabase.createClient(
+    supabaseUrl,
+    supabasePublishableKey
+  );
+
   /* ---------- Review modal ---------- */
   var reviewModal = document.getElementById('review-modal');
   var openReviewBtn = document.getElementById('open-review-modal');
@@ -152,11 +160,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Escape' && !reviewModal.hidden) closeModal();
   });
 
-  /* ---------- Star rating widget ---------- */
+  /* ---------- Star rating ---------- */
   stars.forEach(function (star) {
     star.addEventListener('click', function () {
       var value = parseInt(star.getAttribute('data-value'), 10);
       ratingInput.value = value;
+
       stars.forEach(function (s) {
         var active = parseInt(s.getAttribute('data-value'), 10) <= value;
         s.classList.toggle('active', active);
@@ -165,25 +174,62 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  reviewForm.addEventListener('submit', function (e) {
+  /* ---------- Submit review to Supabase ---------- */
+  reviewForm.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     var name = document.getElementById('rv-name').value.trim();
+    var service = document.getElementById('rv-service').value;
     var text = document.getElementById('rv-text').value.trim();
     var rating = ratingInput.value;
+    var permission = document.getElementById('rv-permission').checked;
 
     if (!name || !text || !rating) {
       reviewStatus.style.color = '#E08585';
-      reviewStatus.textContent = 'Please fill in your name, rating and review.';
+      reviewStatus.textContent =
+        'Please fill in your name, rating and review.';
       return;
     }
 
-    // Front-end only for now. This is where you would send the review data
-    // to a database or backend endpoint for Qosight to approve before it
-    // appears publicly in the Client Reviews section.
+    if (!permission) {
+      reviewStatus.style.color = '#E08585';
+      reviewStatus.textContent =
+        'Please give permission before submitting your review.';
+      return;
+    }
+
     reviewStatus.style.color = 'var(--accent)';
-    reviewStatus.textContent = 'Thanks for your feedback — it will be reviewed before appearing publicly.';
+    reviewStatus.textContent = 'Submitting your review...';
+
+    var result = await supabaseClient
+      .from('reviews')
+      .insert([
+        {
+          name: name,
+          service: service,
+          rating: Number(rating),
+          review: text,
+          permission: permission,
+          approved: false
+        }
+      ]);
+
+    if (result.error) {
+      console.error('Review submission error:', result.error);
+
+      reviewStatus.style.color = '#E08585';
+      reviewStatus.textContent =
+        'Something went wrong. Please try again.';
+      return;
+    }
+
+    reviewStatus.style.color = 'var(--accent)';
+    reviewStatus.textContent =
+      'Thanks for your feedback — your review was submitted and will be reviewed before appearing publicly.';
+
     reviewForm.reset();
+    ratingInput.value = '';
+
     stars.forEach(function (s) {
       s.classList.remove('active');
       s.setAttribute('aria-checked', 'false');
@@ -191,5 +237,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setTimeout(closeModal, 1800);
   });
-
-});
