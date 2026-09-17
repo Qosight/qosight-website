@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qosight Admin - Review Approvals</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<!--
+  Admin-page-only styles. Kept here instead of style.css so the main site
+  stylesheet is untouched, same pattern used for page-specific styling
+  elsewhere on the site.
+-->
+<style>
+  body { min-height: 100vh; display: flex; flex-direction: column; }
+
+  .admin-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+  }
+  .admin-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .admin-header .logo { font-size: 1.3rem; }
+  .admin-header p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  .admin-main { flex: 1; padding: var(--space-lg) 0; }
+
+  .admin-state {
+    text-align: center;
+    color: var(--text-muted);
+    padding: var(--space-lg) 0;
+  }
+
+  .pending-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 800px) {
+    .pending-grid { grid-template-columns: 1fr; }
+  }
+
+  .pending-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    padding: var(--space-md);
+  }
+  .pending-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: var(--space-sm);
+  }
+  .pending-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .pending-name { font-weight: 600; color: var(--text); }
+  .pending-meta {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+  .pending-stars { color: var(--accent); font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+  .pending-text { color: var(--text); font-size: 0.95rem; margin-bottom: var(--space-sm); }
+  .pending-flags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: var(--space-md);
+  }
+  .pending-flag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text-muted);
+  }
+  .pending-actions { display: flex; gap: 0.75rem; }
+  .btn-approve {
+    background: var(--accent);
+    color: #14110A;
+    border: none;
+  }
+  .btn-approve:hover { background: #d9b578; }
+  .btn-reject {
+    background: transparent;
+    border: 1px solid #E08585;
+    color: #E08585;
+  }
+  .btn-reject:hover { background: rgba(224, 133, 133, 0.1); }
+  .btn-small { padding: 0.55rem 1.1rem; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<header class="admin-header">
+  <div class="container">
+    <div>
+      <span class="logo">Qosight</span>
+      <p>Review Approvals</p>
+    </div>
+    <button class="btn btn-secondary btn-small" id="logout-btn" type="button">Log Out</button>
+  </div>
+</header>
+
+<main class="admin-main">
+  <div class="container">
+
+    <p class="admin-state" id="admin-checking">Checking your session...</p>
+
+    <div id="admin-content" hidden>
+      <div class="section-head">
+        <h2>Pending Reviews</h2>
+        <p>Approve a review to publish it on the site, or reject it to permanently remove it.</p>
+      </div>
+
+      <p class="admin-state" id="pending-loading">Loading pending reviews...</p>
+      <p class="admin-state" id="pending-empty" hidden>No pending reviews right now.</p>
+
+      <div class="pending-grid" id="pending-grid"></div>
+    </div>
+
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="admin.js"></script>
+</body>
+</html>
