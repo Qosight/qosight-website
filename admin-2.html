@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qosight Admin - Review Approvals</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/icons/favicon.png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<!--
+  Admin-page-only styles. Kept here instead of style.css so the main site
+  stylesheet is untouched, same pattern used for page-specific styling
+  elsewhere on the site.
+-->
+<style>
+  body { min-height: 100vh; display: flex; flex-direction: column; }
+
+  .admin-header {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+  }
+  .admin-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .admin-header .logo { font-size: 1.3rem; }
+  .admin-header p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  .admin-main { flex: 1; padding: var(--space-lg) 0; }
+
+  .admin-state {
+    text-align: center;
+    color: var(--text-muted);
+    padding: var(--space-lg) 0;
+  }
+
+  .pending-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 800px) {
+    .pending-grid { grid-template-columns: 1fr; }
+  }
+
+  .pending-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    padding: var(--space-md);
+  }
+  .pending-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: var(--space-sm);
+  }
+  .pending-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .pending-name { font-weight: 600; color: var(--text); }
+  .pending-meta {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+  .pending-stars { color: var(--accent); font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+  .pending-text { color: var(--text); font-size: 0.95rem; margin-bottom: var(--space-sm); }
+  .pending-flags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: var(--space-md);
+  }
+  .pending-flag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text-muted);
+  }
+  .pending-actions { display: flex; gap: 0.75rem; }
+  .btn-approve {
+    background: var(--accent);
+    color: #14110A;
+    border: none;
+  }
+  .btn-approve:hover { background: #d9b578; }
+  .btn-reject {
+    background: transparent;
+    border: 1px solid #E08585;
+    color: #E08585;
+  }
+  .btn-reject:hover { background: rgba(224, 133, 133, 0.1); }
+  .btn-small { padding: 0.55rem 1.1rem; font-size: 0.85rem; }
+
+  .admin-section-gap { margin-top: var(--space-lg); }
+  .visit-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--border);
+  }
+  .visit-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+  .visit-time { color: var(--text); font-weight: 600; min-width: 150px; }
+  .visit-location { color: var(--accent); }
+  .visit-page { color: var(--text-muted); }
+  .visit-referrer { color: var(--text-muted); font-size: 0.8rem; width: 100%; }
+
+  .portfolio-category-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    padding: var(--space-md);
+    margin-bottom: 1.25rem;
+  }
+  .portfolio-category-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .portfolio-category-header h3 { font-size: 1.1rem; }
+  .portfolio-category-count { font-size: 0.8rem; color: var(--text-muted); }
+  .portfolio-category-desc { font-size: 0.88rem; color: var(--text-muted); margin: 0.4rem 0 1rem; }
+  .portfolio-video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .portfolio-video-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+  .portfolio-upload-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .portfolio-upload-row input[type="file"] {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+  .add-category-box {
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+  }
+  .add-category-box h3 { font-size: 1.05rem; margin-bottom: 0.75rem; }
+  .add-category-box .form-row { margin-bottom: 0.9rem; }
+</style>
+</head>
+<body>
+
+<header class="admin-header">
+  <div class="container">
+    <div>
+      <span class="logo">Qosight</span>
+      <p>Review Approvals</p>
+    </div>
+    <button class="btn btn-secondary btn-small" id="logout-btn" type="button">Log Out</button>
+  </div>
+</header>
+
+<main class="admin-main">
+  <div class="container">
+
+    <p class="admin-state" id="admin-checking">Checking your session...</p>
+
+    <div id="admin-content" hidden>
+      <div class="section-head">
+        <h2>Pending Reviews</h2>
+        <p>Approve a review to publish it on the site, or reject it to permanently remove it.</p>
+      </div>
+
+      <p class="admin-state" id="pending-loading">Loading pending reviews...</p>
+      <p class="admin-state" id="pending-empty" hidden>No pending reviews right now.</p>
+
+      <div class="pending-grid" id="pending-grid"></div>
+    </div>
+
+    <div id="visits-section" class="admin-section-gap" hidden>
+      <div class="section-head">
+        <h2>Recent Visits</h2>
+        <p>Approximate location based on IP address, not exact GPS. Shows the most recent visits to the site.</p>
+      </div>
+
+      <p class="admin-state" id="visits-loading">Loading recent visits...</p>
+      <p class="admin-state" id="visits-empty" hidden>No visits logged yet.</p>
+
+      <div class="visit-list" id="visit-list"></div>
+    </div>
+
+    <div id="portfolio-section" class="admin-section-gap" hidden>
+      <div class="section-head">
+        <h2>Portfolio (Our Work)</h2>
+        <p>Add a video to an existing category, or create a new category. Changes appear on the live site right away, no GitHub upload needed.</p>
+      </div>
+
+      <p class="admin-state" id="portfolio-loading">Loading categories...</p>
+
+      <div id="portfolio-categories"></div>
+
+      <div class="add-category-box">
+        <h3>Add a New Category</h3>
+        <form id="add-category-form" novalidate>
+          <div class="form-row">
+            <label for="new-cat-title">Category title</label>
+            <input type="text" id="new-cat-title" required placeholder="e.g. Welcome and Onboarding">
+          </div>
+          <div class="form-row">
+            <label for="new-cat-description">Description</label>
+            <textarea id="new-cat-description" rows="2" placeholder="Short description shown on the card"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="new-cat-image">Card image <span class="optional">(optional)</span></label>
+            <input type="file" id="new-cat-image" accept="image/png,image/jpeg,image/webp">
+          </div>
+          <button type="submit" class="btn btn-primary btn-small">Add Category</button>
+          <p class="form-status" id="add-category-status"></p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="admin.js"></script>
+</body>
+</html>
